@@ -5,10 +5,11 @@ import { GraduationCap, Calendar, MapPin, Award, BookOpen } from 'lucide-react';
 
 export default function EducationSection() {
   return (
-    <section id="education" className="relative py-24 sm:py-32">
+    <section id="education" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-neon-emerald/40 to-transparent" />
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-neon-emerald/3 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-neon-emerald/[0.03] rounded-full blur-3xl floating-orb-2" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-neon-cyan/[0.02] rounded-full blur-3xl floating-orb-1" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -54,12 +55,12 @@ export default function EducationSection() {
               </div>
 
               {/* CGPA Display */}
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
                 <div className="glass-card rounded-xl p-5 text-center flex-1 group/cgpa">
-                  <div className="text-4xl font-bold gradient-text-cyan mb-1">8.50</div>
+                  <div className="text-4xl font-bold text-shimmer mb-1">8.50</div>
                   <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">CGPA out of 10</div>
-                  <div className="mt-3 mx-auto w-16 h-1 rounded-full bg-surface-3 overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-neon-cyan to-neon-emerald" style={{ width: '85%' }} />
+                  <div className="mt-3 mx-auto w-20 h-1.5 rounded-full bg-surface-3 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-neon-cyan to-neon-emerald skill-bar-fill" style={{ width: '85%' }} />
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 flex-1">

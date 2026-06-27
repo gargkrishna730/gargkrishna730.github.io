@@ -650,6 +650,61 @@ section {
   background-color: rgba(6, 182, 212, 0.03);
 }
 
+/* Skill bar enhanced hover glow */
+.skill-bar-fill {
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s;
+}
+
+/* Marquee pause on hover for accessibility */
+@media (hover: hover) {
+  [style*="marquee"]:hover {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Smooth page-level transitions */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced glass card hover state */
+.glass-card {
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+/* Mobile nav link animation */
+@media (max-width: 767px) {
+  .glass-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Stagger animation for list items */
+@keyframes list-item-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Subtle text glow on heading hover */
+h2:hover, h3:hover {
+  transition: text-shadow 0.3s;
+}
+
+/* Terminal prompt styling */
+.terminal-prompt {
+  color: #10b981;
+  user-select: none;
+}
+.terminal-separator {
+  color: #94a3b8;
+  user-select: none;
+}
+.terminal-path {
+  color: #06b6d4;
+  user-select: none;
+}
+
 /* Testimonial card accent line */
 .testimonial-accent {
   position: relative;

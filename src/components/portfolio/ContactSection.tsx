@@ -92,6 +92,8 @@ export default function ContactSection() {
     <section id="contact" className="relative py-24 sm:py-32 overflow-hidden section-tint">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-neon-emerald/50 to-transparent" />
       <div className="absolute inset-0 grid-pattern opacity-30" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-neon-emerald/[0.03] rounded-full blur-3xl floating-orb-2" />
+      <div className="absolute bottom-1/3 left-0 w-[350px] h-[350px] bg-neon-cyan/[0.02] rounded-full blur-3xl floating-orb-1" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -180,9 +182,15 @@ export default function ContactSection() {
           {/* Right: Contact form */}
           <ScrollReveal direction="right">
             <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-6 sm:p-8 h-full flex flex-col">
-              <div className="flex items-center gap-2 mb-6">
-                <Terminal className="w-5 h-5 text-neon-cyan" />
-                <h3 className="text-lg font-semibold text-foreground">Send a Message</h3>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <Terminal className="w-5 h-5 text-neon-cyan" />
+                  <h3 className="text-lg font-semibold text-foreground">Send a Message</h3>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-neon-emerald/10 border border-neon-emerald/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-neon-emerald animate-pulse" />
+                  <span className="text-[10px] font-mono text-neon-emerald">~24h response</span>
+                </div>
               </div>
 
               <div className="space-y-5 flex-1">
