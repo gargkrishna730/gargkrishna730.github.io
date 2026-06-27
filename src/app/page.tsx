@@ -9,7 +9,6 @@ import SkillsSection from '@/components/portfolio/SkillsSection';
 import ExperienceSection from '@/components/portfolio/ExperienceSection';
 import ProjectsSection from '@/components/portfolio/ProjectsSection';
 import CertificationsSection from '@/components/portfolio/CertificationsSection';
-import TestimonialsSection from '@/components/portfolio/TestimonialsSection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import Footer from '@/components/portfolio/Footer';
 import ScrollProgress from '@/components/portfolio/ScrollProgress';
@@ -42,8 +41,6 @@ export default function Home() {
       <ProjectsSection />
       <CircuitDivider color="emerald" />
       <CertificationsSection />
-      <CircuitDivider color="pink" />
-      <TestimonialsSection />
       <CircuitDivider color="cyan" />
       <ContactSection />
       <Footer />
