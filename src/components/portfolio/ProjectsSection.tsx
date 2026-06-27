@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ScrollReveal, SectionHeading, StaggerChildren, StaggerItem } from './ScrollAnimations';
+import TiltCard from './TiltCard';
 
 const projects = [
   {
@@ -10,8 +11,8 @@ const projects = [
     tech: ['Terraform', 'GitHub Actions', 'AWS', 'ElastiCache', 'NGINX', 'WPScan'],
     icon: '🌐',
     gradient: 'from-neon-cyan/20 to-neon-emerald/20',
-    borderColor: 'hover:border-neon-cyan/30',
     iconColor: 'text-neon-cyan',
+    accent: '#06b6d4',
   },
   {
     title: 'SonarQube One-Click Installer',
@@ -19,8 +20,8 @@ const projects = [
     tech: ['Bash', 'PowerShell', 'PostgreSQL', 'NGINX', 'SonarQube', 'Systemd'],
     icon: '🔍',
     gradient: 'from-neon-purple/20 to-pink-500/20',
-    borderColor: 'hover:border-neon-purple/30',
     iconColor: 'text-neon-purple',
+    accent: '#8b5cf6',
   },
   {
     title: 'Azure ACR Image Cleanup',
@@ -28,8 +29,8 @@ const projects = [
     tech: ['Azure CLI', 'Bash', 'Azure ACR', 'Docker', 'Container Registry', 'Automation'],
     icon: '🧹',
     gradient: 'from-sky-500/20 to-neon-cyan/20',
-    borderColor: 'hover:border-sky-400/30',
     iconColor: 'text-sky-400',
+    accent: '#38bdf8',
   },
   {
     title: 'Multi-Cloud Observability Platform',
@@ -37,8 +38,8 @@ const projects = [
     tech: ['OpenTelemetry', 'Prometheus', 'Grafana', 'Datadog', 'eBPF', 'Loki'],
     icon: '📊',
     gradient: 'from-neon-emerald/20 to-lime-500/20',
-    borderColor: 'hover:border-neon-emerald/30',
     iconColor: 'text-neon-emerald',
+    accent: '#10b981',
   },
   {
     title: 'GitOps Kubernetes Deployments',
@@ -46,8 +47,8 @@ const projects = [
     tech: ['Kubernetes', 'ArgoCD', 'Helm', 'Kustomize', 'GitOps', 'Helm Charts'],
     icon: '☸️',
     gradient: 'from-neon-cyan/20 to-blue-500/20',
-    borderColor: 'hover:border-neon-cyan/30',
     iconColor: 'text-neon-cyan',
+    accent: '#06b6d4',
   },
   {
     title: 'Infrastructure as Code Framework',
@@ -55,8 +56,8 @@ const projects = [
     tech: ['Terraform', 'Ansible', 'IaC', 'Git', 'CI/CD', 'Compliance'],
     icon: '🏗️',
     gradient: 'from-amber-500/20 to-orange-500/20',
-    borderColor: 'hover:border-amber-400/30',
     iconColor: 'text-amber-400',
+    accent: '#fbbf24',
   },
 ];
 
@@ -75,43 +76,41 @@ export default function ProjectsSection() {
         <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
           {projects.map((project) => (
             <StaggerItem key={project.title}>
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className={`glass-card rounded-2xl overflow-hidden h-full flex flex-col group ${project.borderColor} shimmer-border transition-all duration-300`}
-              >
-                {/* Top gradient bar */}
-                <div className={`h-1 bg-gradient-to-r ${project.gradient}`} />
+              <TiltCard className="h-full">
+                <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col group transition-all duration-300">
+                  {/* Top gradient bar */}
+                  <div className={`h-1 bg-gradient-to-r ${project.gradient}`} />
 
-                <div className="p-6 flex-1 flex flex-col">
-                  {/* Icon and title */}
-                  <div className="flex items-start gap-3 mb-4">
-                    <span className="text-3xl">{project.icon}</span>
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground group-hover:text-neon-cyan transition-colors leading-tight">
-                        {project.title}
-                      </h3>
+                  <div className="p-6 flex-1 flex flex-col">
+                    {/* Icon and title */}
+                    <div className="flex items-start gap-3 mb-4">
+                      <span className="text-3xl">{project.icon}</span>
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground group-hover:text-neon-cyan transition-colors leading-tight">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1 line-clamp-4">
+                      {project.description}
+                    </p>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-surface-3 text-muted-foreground border border-border/50"
+                        >
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </div>
-
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1 line-clamp-4">
-                    {project.description}
-                  </p>
-
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-surface-3 text-muted-foreground border border-border/50"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </motion.div>
+              </TiltCard>
             </StaggerItem>
           ))}
         </StaggerChildren>

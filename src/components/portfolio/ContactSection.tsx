@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal, SectionHeading } from './ScrollAnimations';
-import { Send, Mail, Phone, MapPin, Copy, Check, Terminal, Loader2, AlertCircle } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Copy, Check, Terminal, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 const contactInfo = [
@@ -197,7 +197,7 @@ export default function ContactSection() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm input-glow"
                     placeholder="John Doe"
                     disabled={sending}
                   />
@@ -214,7 +214,7 @@ export default function ContactSection() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm input-glow"
                     placeholder="john@example.com"
                     disabled={sending}
                   />
@@ -222,16 +222,22 @@ export default function ContactSection() {
 
                 {/* Message field */}
                 <div className="space-y-2 flex-1">
-                  <label htmlFor="message" className="text-sm font-mono text-muted-foreground">
-                    <span className="text-neon-cyan">$</span> your_message
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="message" className="text-sm font-mono text-muted-foreground">
+                      <span className="text-neon-cyan">$</span> your_message
+                    </label>
+                    <span className={`text-xs font-mono char-counter ${formData.message.length > 450 ? 'danger' : formData.message.length > 350 ? 'warning' : 'text-muted-foreground/50'}`}>
+                      {formData.message.length}/500
+                    </span>
+                  </div>
                   <textarea
                     id="message"
                     required
                     rows={5}
+                    maxLength={500}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm resize-none input-glow"
                     placeholder="Tell me about your project or opportunity..."
                     disabled={sending}
                   />

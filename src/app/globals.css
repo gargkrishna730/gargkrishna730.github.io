@@ -397,3 +397,107 @@
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Animated circuit section divider */
+.circuit-divider {
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+}
+.circuit-divider svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.circuit-divider .dash-animated {
+  stroke-dasharray: 8 12;
+  animation: dash-flow 20s linear infinite;
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -400; }
+}
+
+/* Pulse dot for availability */
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 1; }
+  75%, 100% { transform: scale(2.5); opacity: 0; }
+}
+.ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Glass card enhanced hover */
+.glass-card-interactive {
+  background: rgba(13, 13, 21, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(6, 182, 212, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(6, 182, 212, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-interactive:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(6, 182, 212, 0.08), inset 0 1px 0 rgba(6, 182, 212, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Character counter */
+.char-counter {
+  transition: color 0.3s;
+}
+.char-counter.warning {
+  color: #fbbf24;
+}
+.char-counter.danger {
+  color: #ef4444;
+}
+
+/* Terminal prompt blinking block */
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.terminal-blink {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+/* Smooth gradient border for cards */
+.gradient-border-cyan {
+  position: relative;
+}
+.gradient-border-cyan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(6,182,212,0.3), rgba(16,185,129,0.15), rgba(139,92,246,0.15), rgba(6,182,212,0.3));
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Floating label effect for form inputs */
+.input-glow:focus {
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.05);
+}
+
+/* Testimonial card accent line */
+.testimonial-accent {
+  position: relative;
+}
+.testimonial-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #06b6d4, #ec4899, #8b5cf6);
+  border-radius: 2px 2px 0 0;
+}

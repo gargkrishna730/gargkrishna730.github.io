@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Terminal, Github, Linkedin, Mail, Heart, ArrowUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/', label: 'GitHub' },
@@ -10,6 +11,24 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      }));
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -71,10 +90,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom terminal line */}
-        <div className="mt-8 pt-6 border-t border-border/20 text-center">
-          <p className="font-mono text-xs text-muted-foreground/60">
-            <span className="text-neon-emerald/50">$</span> uptime <span className="text-neon-cyan/50">99.9%</span> — always deploying, always learning
-          </p>
+        <div className="mt-8 pt-6 border-t border-border/20">
+          <div className="flex items-center justify-between font-mono text-xs text-muted-foreground/60">
+            <div className="flex items-center gap-2">
+              <span className="text-neon-emerald/50">$</span>
+              <span>uptime</span>
+              <span className="text-neon-cyan/50">99.9%</span>
+              <span>— always deploying, always learning</span>
+            </div>
+            <div className="hidden sm:flex items-center gap-2">
+              <span className="text-neon-emerald/50">IST</span>
+              <span className="text-neon-cyan/50 terminal-blink">▌</span>
+              <span className="text-neon-cyan/60">{time}</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

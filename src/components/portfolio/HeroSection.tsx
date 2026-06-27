@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ArrowRight, Download, Zap } from 'lucide-react';
 import { MagneticButton } from './ScrollAnimations';
 import Image from 'next/image';
 
@@ -129,6 +129,21 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+        {/* Availability badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-card mb-6"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="ping-slow absolute inline-flex h-full w-full rounded-full bg-neon-emerald opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-emerald" />
+          </span>
+          <span className="text-sm font-medium text-foreground">Available for Opportunities</span>
+          <Zap className="w-3.5 h-3.5 text-amber-400" />
+        </motion.div>
+
         {/* Terminal-style greeting */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -184,7 +199,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
         >
           <MagneticButton>
             <a
@@ -201,6 +216,16 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-foreground glass-card hover:border-neon-cyan/30 transition-all duration-300"
             >
               View My Work
+            </a>
+          </MagneticButton>
+          <MagneticButton>
+            <a
+              href="/images/hero-bg.png"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-medium text-muted-foreground hover:text-neon-cyan glass-card hover:border-neon-cyan/30 transition-all duration-300"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline">Resume</span>
             </a>
           </MagneticButton>
         </motion.div>
