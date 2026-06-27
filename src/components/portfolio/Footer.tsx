@@ -139,10 +139,6 @@ export default function Footer() {
                 <MapPin className="w-3.5 h-3.5 text-neon-cyan/50" />
                 Chennai, India
               </li>
-              <li className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                <Clock className="w-3.5 h-3.5 text-neon-emerald/50" />
-                <span className="text-neon-emerald/70">Available</span> for opportunities
-              </li>
             </ul>
           </div>
 
