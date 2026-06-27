@@ -54,7 +54,7 @@ const providerIcons: Record<string, string> = {
 
 export default function CertificationsSection() {
   return (
-    <section id="certifications" className="relative py-24 sm:py-32 overflow-hidden">
+    <section id="certifications" className="relative py-24 sm:py-32 overflow-hidden dot-pattern">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
 
       {/* Decorative background orbs */}

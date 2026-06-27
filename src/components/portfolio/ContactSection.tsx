@@ -67,7 +67,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden">
+    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden section-tint">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-neon-emerald/50 to-transparent" />
       <div className="absolute inset-0 grid-pattern opacity-30" />
 

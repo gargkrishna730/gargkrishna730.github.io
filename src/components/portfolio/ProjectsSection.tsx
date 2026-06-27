@@ -62,7 +62,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
+    <section id="projects" className="relative py-24 sm:py-32 section-tint">
       <div className="absolute inset-0 grid-pattern opacity-30" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,7 +78,7 @@ export default function ProjectsSection() {
               <motion.div
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className={`glass-card rounded-2xl overflow-hidden h-full flex flex-col group ${project.borderColor} transition-all duration-300`}
+                className={`glass-card rounded-2xl overflow-hidden h-full flex flex-col group ${project.borderColor} shimmer-border transition-all duration-300`}
               >
                 {/* Top gradient bar */}
                 <div className={`h-1 bg-gradient-to-r ${project.gradient}`} />

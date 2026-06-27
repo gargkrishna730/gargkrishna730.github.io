@@ -56,7 +56,7 @@ export default function ExperienceSection() {
   };
 
   return (
-    <section id="experience" className="relative py-24 sm:py-32 overflow-hidden">
+    <section id="experience" className="relative py-24 sm:py-32 overflow-hidden section-tint">
       {/* Background accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-neon-purple/50 to-transparent" />
 
