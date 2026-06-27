@@ -7,7 +7,7 @@ import { Briefcase, MapPin, Calendar, ChevronRight, ChevronDown } from 'lucide-r
 
 const experiences = [
   {
-    title: 'DevOps Engineer - SDE I',
+    title: 'DevOps Lead',
     company: 'Kubesense.ai',
     location: 'Chennai, India',
     period: 'April 2025 - Present',
