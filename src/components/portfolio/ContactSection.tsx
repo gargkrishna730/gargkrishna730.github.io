@@ -6,6 +6,9 @@ import { ScrollReveal, SectionHeading } from './ScrollAnimations';
 import { Send, Mail, Phone, MapPin, Copy, Check, Terminal, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
+// Contact API URL — points to Cloudflare Worker in production, /api/contact in dev
+const CONTACT_API_URL = process.env.NEXT_PUBLIC_CONTACT_API_URL || "/api/contact";
+
 const contactInfo = [
   { icon: Mail, label: 'Email', value: 'gargkrishna730@gmail.com', href: 'mailto:gargkrishna730@gmail.com' },
   { icon: Phone, label: 'Phone', value: '+91 91520 99209', href: 'tel:+919152099209' },
@@ -58,7 +61,7 @@ export default function ContactSection() {
     setSending(true);
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
