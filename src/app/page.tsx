@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/portfolio/Navbar';
@@ -19,6 +19,7 @@ import BackToTop from '@/components/portfolio/BackToTop';
 import MouseGlow from '@/components/portfolio/MouseGlow';
 import CircuitDivider from '@/components/portfolio/CircuitDivider';
 import PageLoader from '@/components/portfolio/PageLoader';
+import StatsTicker from '@/components/portfolio/StatsTicker';
 
 const ParticleField = dynamic(() => import('@/components/portfolio/ParticleField'), {
   ssr: false,
@@ -32,15 +33,10 @@ export default function Home() {
     return false;
   });
 
-  const handleLoaderComplete = useCallback(() => {
-    setMounted(true);
-    sessionStorage.setItem('portfolio-loaded', '1');
-  }, []);
-
   return (
     <main className="relative min-h-screen bg-surface-0 noise-overlay">
       <AnimatePresence>
-        {!mounted && <PageLoader onComplete={() => { setMounted(true); sessionStorage.setItem('portfolio-loaded', '1'); }} />}
+        {!mounted && <PageLoader onComplete={() => { setMounted(true); try { sessionStorage.setItem('portfolio-loaded', '1'); } catch {} }} />}
       </AnimatePresence>
       <ParticleField />
       <MouseGlow />
@@ -48,6 +44,7 @@ export default function Home() {
       <BackToTop />
       <Navbar />
       <HeroSection />
+      <StatsTicker />
       <CircuitDivider color="cyan" />
       <AboutSection />
       <CircuitDivider color="purple" />

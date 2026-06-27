@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, ArrowRight, Download, Zap } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Download, Zap } from 'lucide-react';
 import { MagneticButton } from './ScrollAnimations';
 import Image from 'next/image';
 
@@ -123,6 +123,7 @@ export default function HeroSection() {
       {/* Radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-neon-cyan/5 blur-3xl" />
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-neon-purple/5 blur-3xl" />
+      <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-neon-emerald/[0.03] blur-3xl floating-orb-1" />
 
       {/* Grid overlay */}
       <div className="absolute inset-0 grid-pattern z-[1]" />
@@ -230,12 +231,12 @@ export default function HeroSection() {
           </MagneticButton>
         </motion.div>
 
-        {/* Social links */}
+        {/* Social links with labels */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.5 }}
-          className="flex items-center justify-center gap-4"
+          className="flex items-center justify-center gap-3"
         >
           {[
             { icon: Github, href: 'https://github.com/', label: 'GitHub' },
@@ -247,18 +248,19 @@ export default function HeroSection() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
+              whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300"
+              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300"
               aria-label={label}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className="w-4 h-4" />
+              <span className="text-xs font-mono hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity duration-200">{label}</span>
             </motion.a>
           ))}
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator with animated dots */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -272,7 +274,11 @@ export default function HeroSection() {
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-neon-cyan transition-colors"
         >
           <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
-          <ChevronDown className="w-4 h-4" />
+          <div className="flex gap-1">
+            <div className="w-1 h-1 rounded-full bg-neon-cyan/40 animate-bounce" style={{ animationDelay: '0ms' }} />
+            <div className="w-1 h-1 rounded-full bg-neon-cyan/60 animate-bounce" style={{ animationDelay: '150ms' }} />
+            <div className="w-1 h-1 rounded-full bg-neon-cyan animate-bounce" style={{ animationDelay: '300ms' }} />
+          </div>
         </motion.a>
       </motion.div>
     </section>
