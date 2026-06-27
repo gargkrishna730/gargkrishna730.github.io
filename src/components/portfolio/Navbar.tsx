@@ -11,7 +11,6 @@ const navLinks = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
-  { label: 'Testimonials', href: '#testimonials' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -85,7 +84,7 @@ export default function Navbar() {
           </motion.a>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -111,7 +110,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-neon-cyan transition-colors"
+            className="md:hidden p-2 text-foreground hover:text-neon-cyan transition-colors"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -127,7 +126,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-surface-0/95 backdrop-blur-xl pt-20 px-6 lg:hidden overflow-y-auto"
+            className="fixed inset-0 z-40 bg-surface-0/95 backdrop-blur-xl pt-20 px-6 md:hidden overflow-y-auto"
           >
             <div className="flex flex-col gap-1 pb-8">
               {navLinks.map((link, i) => {
