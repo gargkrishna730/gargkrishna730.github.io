@@ -20,6 +20,7 @@ import MouseGlow from '@/components/portfolio/MouseGlow';
 import CircuitDivider from '@/components/portfolio/CircuitDivider';
 import PageLoader from '@/components/portfolio/PageLoader';
 import StatsTicker from '@/components/portfolio/StatsTicker';
+import CommandPalette from '@/components/portfolio/CommandPalette';
 
 const ParticleField = dynamic(() => import('@/components/portfolio/ParticleField'), {
   ssr: false,
@@ -43,6 +44,7 @@ export default function Home() {
       <ScrollProgress />
       <BackToTop />
       <Navbar />
+      <CommandPalette />
       <HeroSection />
       <StatsTicker />
       <CircuitDivider color="cyan" />
