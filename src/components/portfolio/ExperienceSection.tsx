@@ -24,7 +24,7 @@ const experiences = [
     ],
   },
   {
-    title: 'Cloud and DevOps Engineer',
+    title: 'SDE I',
     company: 'Quantasis Solutions Pvt. Ltd.',
     location: 'Mumbai, India',
     period: 'Nov 2023 - March 2025',
@@ -57,8 +57,10 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="relative py-24 sm:py-32 overflow-hidden section-tint">
-      {/* Background accent */}
+      {/* Background accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-neon-purple/50 to-transparent" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-neon-purple/[0.03] rounded-full blur-3xl floating-orb-1" />
+      <div className="absolute bottom-1/4 left-0 w-[350px] h-[350px] bg-neon-cyan/[0.03] rounded-full blur-3xl floating-orb-2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -82,9 +84,13 @@ export default function ExperienceSection() {
                 }`}>
                   {/* Timeline dot */}
                   <div className="absolute left-6 lg:left-1/2 -translate-x-1/2 z-10">
-                    <div className={`w-4 h-4 rounded-full border-2 ${
-                      exp.current ? 'bg-neon-emerald border-neon-emerald animate-pulse-glow' : 'bg-surface-0 border-neon-cyan/50'
-                    }`} />
+                    <div className={`relative w-4 h-4 rounded-full border-2 ${
+                      exp.current ? 'bg-neon-emerald border-neon-emerald' : 'bg-surface-0 border-neon-cyan/50'
+                    }`}>
+                      {exp.current && (
+                        <span className="absolute inset-0 rounded-full bg-neon-emerald animate-ping opacity-40" />
+                      )}
+                    </div>
                   </div>
 
                   {/* Content card */}

@@ -487,6 +487,169 @@
   box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.05);
 }
 
+/* Floating animated orbs for section backgrounds */
+@keyframes float-orb-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(20px, 10px) scale(1.02); }
+}
+@keyframes float-orb-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-25px, 15px) scale(0.98); }
+  50% { transform: translate(15px, -25px) scale(1.05); }
+  75% { transform: translate(-10px, -15px) scale(1); }
+}
+.floating-orb-1 {
+  animation: float-orb-1 20s ease-in-out infinite;
+}
+.floating-orb-2 {
+  animation: float-orb-2 25s ease-in-out infinite;
+}
+
+/* Animated gradient text shimmer */
+@keyframes text-shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.text-shimmer {
+  background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 25%, #e2e8f0 50%, #22d3ee 75%, #06b6d4 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 3s linear infinite;
+}
+
+/* Glowing dot pulse for timeline */
+@keyframes dot-pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.dot-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: dot-pulse-ring 2s ease-out infinite;
+}
+
+/* Card spotlight effect on hover */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, -100px);
+  left: var(--mouse-x, -100px);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 1;
+}
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced scrollbar for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(6, 182, 212, 0.3) #0a0a0f;
+}
+
+/* Staggered fade-in utility */
+@keyframes stagger-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Neon underline for active text */
+.neon-underline {
+  position: relative;
+}
+.neon-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #06b6d4, #10b981);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.4), 0 0 16px rgba(6, 182, 212, 0.2);
+  border-radius: 1px;
+}
+
+/* Hover card lift with glow */
+.card-hover-glow {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover-glow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(6, 182, 212, 0.06);
+}
+
+/* Animated border gradient */
+@keyframes border-rotate {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+.animated-border-gradient {
+  --angle: 0deg;
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--surface-card, #0d0d15), var(--surface-card, #0d0d15)) padding-box,
+    conic-gradient(from var(--angle), #06b6d4, #8b5cf6, #10b981, #06b6d4) border-box;
+  animation: border-rotate 4s linear infinite;
+}
+
+/* Typing line animation */
+@keyframes type-line {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Responsive nav link compact */
+.nav-compact {
+  font-size: 0.8125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+/* Smooth section transitions */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Focus ring animation for interactive elements */
+@keyframes focus-ring-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15); }
+}
+
+/* Badge glow animation */
+@keyframes badge-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(6, 182, 212, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.4), 0 0 30px rgba(6, 182, 212, 0.1); }
+}
+.badge-glow {
+  animation: badge-glow 3s ease-in-out infinite;
+}
+
+/* Code block enhanced styling */
+.code-block-line {
+  transition: background-color 0.2s;
+}
+.code-block-line:hover {
+  background-color: rgba(6, 182, 212, 0.03);
+}
+
 /* Testimonial card accent line */
 .testimonial-accent {
   position: relative;

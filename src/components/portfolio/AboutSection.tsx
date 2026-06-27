@@ -13,8 +13,10 @@ const highlights = [
 export default function AboutSection() {
   return (
     <section id="about" className="relative py-24 sm:py-32 overflow-hidden">
-      {/* Background accent */}
+      {/* Background accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-neon-cyan/50 to-transparent" />
+      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-neon-cyan/[0.02] rounded-full blur-3xl floating-orb-2" />
+      <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/[0.02] rounded-full blur-3xl floating-orb-1" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -39,28 +41,28 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              <div className="space-y-4 font-mono text-sm pl-7">
-                <div>
+              <div className="space-y-3 font-mono text-sm pl-7">
+                <div className="code-block-line px-2 -mx-2 rounded">
                   <span className="text-neon-emerald">name</span>:{' '}
                   <span className="text-amber-400">&quot;Krishna Garg&quot;</span>,
                 </div>
-                <div>
+                <div className="code-block-line px-2 -mx-2 rounded">
                   <span className="text-neon-emerald">role</span>:{' '}
-                  <span className="text-amber-400">&quot;DevOps Engineer&quot;</span>,
+                  <span className="text-amber-400">&quot;DevOps Lead&quot;</span>,
                 </div>
-                <div>
+                <div className="code-block-line px-2 -mx-2 rounded">
                   <span className="text-neon-emerald">location</span>:{' '}
                   <span className="text-amber-400">&quot;Chennai, India&quot;</span>,
                 </div>
-                <div>
+                <div className="code-block-line px-2 -mx-2 rounded">
                   <span className="text-neon-emerald">experience</span>:{' '}
                   <span className="text-amber-400">&quot;2+ years&quot;</span>,
                 </div>
-                <div>
+                <div className="code-block-line px-2 -mx-2 rounded">
                   <span className="text-neon-emerald">education</span>:{' '}
                   <span className="text-amber-400">&quot;B.E. IT, CGPA 8.50&quot;</span>,
                 </div>
-                <div>
+                <div className="code-block-line px-2 -mx-2 rounded">
                   <span className="text-neon-emerald">passion</span>: [
                   <br />
                   <span className="ml-4 text-amber-400">&quot;Kubernetes&quot;</span>,
