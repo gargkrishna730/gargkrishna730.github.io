@@ -154,7 +154,7 @@ export function SectionHeading({ title, subtitle, badge }: { title: string; subt
     <ScrollReveal className="text-center mb-16">
       {badge && (
         <motion.span
-          className="inline-block px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest text-neon-cyan border border-neon-cyan/20 bg-neon-cyan/5 mb-4"
+          className="inline-block px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest text-neon-cyan border border-neon-cyan/20 bg-neon-cyan/5 mb-4 badge-glow"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -165,8 +165,15 @@ export function SectionHeading({ title, subtitle, badge }: { title: string; subt
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
         <span className="gradient-text-cyan">{title}</span>
       </h2>
-      <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{subtitle}</p>
-      <div className="mt-6 mx-auto w-24 h-0.5 bg-gradient-to-r from-transparent via-neon-cyan to-transparent" />
+      <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+      {/* Animated divider with decorative nodes */}
+      <div className="mt-6 mx-auto flex items-center justify-center gap-2">
+        <div className="w-8 h-px bg-gradient-to-r from-transparent to-neon-cyan/40" />
+        <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan/60 animate-pulse" />
+        <div className="w-16 h-0.5 bg-gradient-to-r from-neon-cyan/40 via-neon-cyan to-neon-cyan/40" />
+        <div className="w-1.5 h-1.5 rounded-full bg-neon-emerald/60 animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="w-8 h-px bg-gradient-to-l from-transparent to-neon-emerald/40" />
+      </div>
     </ScrollReveal>
   );
 }
