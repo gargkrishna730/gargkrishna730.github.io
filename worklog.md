@@ -346,3 +346,29 @@ Current Project Status:
 - PageLoader, MouseGlow, TiltCard, CircuitDivider, BackToTop, ScrollProgress all working
 - Desktop and mobile verified with zero errors
 - No pending tasks or cron jobs
+
+---
+Task ID: 9
+Agent: Main Agent
+Task: Fix React hydration mismatch caused by PageLoader + sessionStorage
+
+Work Log:
+- User reported hydration error: server rendered `<div className="fixed inset-0 z-[100]...">` (PageLoader) but client rendered `<Suspense fallback={null}>` (no loader)
+- Root cause: `useState` lazy initializer in page.tsx checked `sessionStorage` on client, returning `true` on revisit, but server always returned `false` — causing server/client HTML mismatch inside `<AnimatePresence>`
+- First fix attempt: Moved sessionStorage check to `useEffect` with `useState(false)` initial value — fixed hydration but triggered `react-hooks/set-state-in-effect` lint error
+- Final fix: Replaced `useState` + `useEffect` pattern with `useSyncExternalStore` — the React-blessed API for reading external stores (sessionStorage) with different server/client snapshots. Server snapshot always returns `false`, client snapshot reads sessionStorage. React handles the transition synchronously before paint, so no flash of loader on revisit.
+- Also created `loaderDone` state to handle first-visit loader completion separately from revisit detection
+
+Verification Results:
+- Zero lint errors
+- Zero console errors on initial load
+- Zero console errors on page reload (revisit path — sessionStorage skip works correctly)
+- Page renders all 10 sections correctly with full interactivity
+- agent-browser confirmed: Hero, About, What I Do, Skills, Experience, Projects, Certifications, Contact, Footer all visible
+- Navbar with all 8 links + Hire Me CTA renders correctly
+
+Stage Summary:
+- Hydration mismatch completely resolved using `useSyncExternalStore` (React canonical pattern)
+- PageLoader shows on first visit, skips instantly on revisit — no visual flash
+- No lint errors, no console errors, no hydration warnings
+- Key file changed: `src/app/page.tsx` (lines 3, 29-50)

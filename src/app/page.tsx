@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useSyncExternalStore } from 'react';
 import dynamic from 'next/dynamic';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/portfolio/Navbar';
@@ -26,18 +26,42 @@ const ParticleField = dynamic(() => import('@/components/portfolio/ParticleField
   ssr: false,
 });
 
+// Stable noop subscribe — sessionStorage doesn't emit events
+const noopSubscribe = () => () => {};
+
+function useHasVisited(): boolean {
+  return useSyncExternalStore(
+    noopSubscribe,
+    // Client snapshot: check sessionStorage
+    () => {
+      try {
+        return sessionStorage.getItem('portfolio-loaded') === '1';
+      } catch {
+        return false;
+      }
+    },
+    // Server snapshot: always false (loader renders on server)
+    () => false,
+  );
+}
+
 export default function Home() {
-  const [mounted, setMounted] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return sessionStorage.getItem('portfolio-loaded') === '1';
-    }
-    return false;
-  });
+  const hasVisited = useHasVisited();
+  const [loaderDone, setLoaderDone] = useState(false);
+
+  const showLoader = !hasVisited && !loaderDone;
+
+  const handleLoaderComplete = useCallback(() => {
+    setLoaderDone(true);
+    try {
+      sessionStorage.setItem('portfolio-loaded', '1');
+    } catch {}
+  }, []);
 
   return (
     <main className="relative min-h-screen bg-surface-0 noise-overlay">
       <AnimatePresence>
-        {!mounted && <PageLoader onComplete={() => { setMounted(true); try { sessionStorage.setItem('portfolio-loaded', '1'); } catch {} }} />}
+        {showLoader && <PageLoader onComplete={handleLoaderComplete} />}
       </AnimatePresence>
       <ParticleField />
       <MouseGlow />
