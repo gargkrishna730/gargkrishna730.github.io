@@ -1,8 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import { ScrollReveal, SectionHeading } from './ScrollAnimations';
-import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Calendar, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Briefcase, MapPin, Calendar, ChevronRight, ChevronDown } from 'lucide-react';
 
 const experiences = [
   {
@@ -48,6 +49,12 @@ function TimelineLine() {
 }
 
 export default function ExperienceSection() {
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (key: string) => {
+    setExpanded(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
   return (
     <section id="experience" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background accent */}
@@ -120,7 +127,7 @@ export default function ExperienceSection() {
 
                       {/* Highlights */}
                       <ul className="space-y-2.5">
-                        {exp.highlights.slice(0, 5).map((h, i) => (
+                        {exp.highlights.slice(0, expanded[exp.company] ? undefined : 5).map((h, i) => (
                           <motion.li
                             key={i}
                             initial={{ opacity: 0, x: -10 }}
@@ -136,9 +143,15 @@ export default function ExperienceSection() {
                       </ul>
 
                       {exp.highlights.length > 5 && (
-                        <button className="mt-3 text-xs font-mono text-neon-cyan/70 hover:text-neon-cyan transition-colors group/btn">
-                          + {exp.highlights.length - 5} more achievements
-                          <span className="inline-block group-hover/btn:translate-x-1 transition-transform"> →</span>
+                        <button
+                          onClick={() => toggleExpand(exp.company)}
+                          className="mt-3 text-xs font-mono text-neon-cyan/70 hover:text-neon-cyan transition-colors group/btn flex items-center gap-1"
+                        >
+                          <ChevronDown className={`w-3 h-3 transition-transform ${expanded[exp.company] ? 'rotate-180' : ''}`} />
+                          {expanded[exp.company]
+                            ? 'Show less'
+                            : `+ ${exp.highlights.length - 5} more achievements`
+                          }
                         </button>
                       )}
                     </motion.div>

@@ -27,8 +27,10 @@ function useTypingEffect(strings: string[], typingSpeed = 80, deletingSpeed = 50
     if (!isDeleting && displayed === current) {
       timeout = setTimeout(() => setIsDeleting(true), pauseTime);
     } else if (isDeleting && displayed === '') {
-      setIsDeleting(false);
-      setIndex((prev) => (prev + 1) % strings.length);
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setIndex((prev) => (prev + 1) % strings.length);
+      }, deletingSpeed);
     } else {
       timeout = setTimeout(
         () => {
