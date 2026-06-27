@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ScrollReveal, SectionHeading, StaggerChildren, StaggerItem } from './ScrollAnimations';
-import { Award, ExternalLink } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 const certifications = [
   {

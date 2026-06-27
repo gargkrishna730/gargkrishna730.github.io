@@ -4,8 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ScrollReveal, SectionHeading, StaggerChildren, StaggerItem } from './ScrollAnimations';
 import {
-  Code2, Cloud, Container, GitBranch, Shield, Activity,
-  Database, Server, Workflow, Layers, Monitor, Lock
+  Code2, Cloud, Container, GitBranch, Shield, Activity
 } from 'lucide-react';
 
 interface Skill {
@@ -134,18 +133,37 @@ function SkillBar({ skill, color, delay }: { skill: Skill; color: string; delay:
     }
   }, [visible, skill.level, delay]);
 
+  const colorMap: Record<string, string> = {
+    'text-neon-cyan': 'linear-gradient(90deg, #06b6d4, #22d3ee)',
+    'text-neon-emerald': 'linear-gradient(90deg, #10b981, #34d399)',
+    'text-neon-purple': 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+    'text-amber-400': 'linear-gradient(90deg, #f59e0b, #fbbf24)',
+    'text-rose-400': 'linear-gradient(90deg, #f43f5e, #fb7185)',
+    'text-sky-400': 'linear-gradient(90deg, #38bdf8, #7dd3fc)',
+  };
+
+  const glowMap: Record<string, string> = {
+    'text-neon-cyan': '0 0 8px rgba(6,182,212,0.4)',
+    'text-neon-emerald': '0 0 8px rgba(16,185,129,0.4)',
+    'text-neon-purple': '0 0 8px rgba(139,92,246,0.4)',
+    'text-amber-400': '0 0 8px rgba(245,158,11,0.4)',
+    'text-rose-400': '0 0 8px rgba(244,63,94,0.4)',
+    'text-sky-400': '0 0 8px rgba(56,189,248,0.4)',
+  };
+
   return (
     <div ref={ref} className="space-y-1.5">
       <div className="flex justify-between text-xs">
         <span className="text-foreground/80 font-medium">{skill.name}</span>
         <span className={`font-mono ${color}`}>{skill.level}%</span>
       </div>
-      <div className="h-1.5 rounded-full bg-surface-3 overflow-hidden">
+      <div className="h-2 rounded-full bg-surface-3 overflow-hidden">
         <motion.div
           className="h-full rounded-full skill-bar-fill"
           style={{
             width: `${width}%`,
-            background: `linear-gradient(90deg, ${color === 'text-neon-cyan' ? '#06b6d4' : color === 'text-neon-emerald' ? '#10b981' : color === 'text-neon-purple' ? '#8b5cf6' : color === 'text-amber-400' ? '#f59e0b' : color === 'text-rose-400' ? '#f43f5e' : '#38bdf8'}, var(--tw-gradient-stops))`,
+            background: colorMap[color] || colorMap['text-neon-cyan'],
+            boxShadow: width > 0 ? (glowMap[color] || glowMap['text-neon-cyan']) : 'none',
           }}
           initial={{ width: 0 }}
         />
@@ -164,7 +182,7 @@ export default function SkillsSection() {
   const filtered = activeTab === 'all' ? skillCategories : skillCategories.filter(c => c.id === activeTab);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
+    <section id="skills" className="relative py-24 sm:py-32 section-tint">
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

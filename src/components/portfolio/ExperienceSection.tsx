@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ScrollReveal, SectionHeading } from './ScrollAnimations';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Briefcase, MapPin, Calendar, ChevronRight, ChevronDown } from 'lucide-react';
 
 const experiences = [

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { ScrollReveal, SectionHeading, StaggerChildren, StaggerItem } from './ScrollAnimations';
-import { ExternalLink, Github, Shield, Zap, HardDrive, Trash2 } from 'lucide-react';
 
 const projects = [
   {
@@ -96,7 +95,7 @@ export default function ProjectsSection() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1 line-clamp-4">
                     {project.description}
                   </p>
 
