@@ -21,6 +21,15 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  sent      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
 model Post {
   id        String   @id @default(cuid())
   title     String

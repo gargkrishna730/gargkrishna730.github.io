@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal, SectionHeading } from './ScrollAnimations';
-import { Send, Mail, Phone, MapPin, Copy, Check, Terminal } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Copy, Check, Terminal, Loader2, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 const contactInfo = [
@@ -25,6 +25,7 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [currentLine, setCurrentLine] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // Terminal animation
@@ -52,17 +53,38 @@ export default function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    toast.success('Message sent! I\'ll get back to you soon.');
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: '', email: '', message: '' });
-  };
+    setSending(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        toast.success('Message sent! I\'ll get back to you soon. 📧');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        toast.error(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      toast.error('Network error. Please check your connection and try again.');
+    } finally {
+      setSending(false);
+    }
+  }, [formData]);
 
   const copyEmail = () => {
     navigator.clipboard.writeText('gargkrishna730@gmail.com');
     setCopied(true);
+    toast.success('Email copied to clipboard!');
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -177,6 +199,7 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm"
                     placeholder="John Doe"
+                    disabled={sending}
                   />
                 </div>
 
@@ -193,6 +216,7 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm"
                     placeholder="john@example.com"
+                    disabled={sending}
                   />
                 </div>
 
@@ -209,6 +233,7 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/20 transition-all font-mono text-sm resize-none"
                     placeholder="Tell me about your project or opportunity..."
+                    disabled={sending}
                   />
                 </div>
               </div>
@@ -216,10 +241,10 @@ export default function ContactSection() {
               {/* Submit button */}
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={submitted}
-                className="mt-6 w-full py-3.5 rounded-xl font-semibold text-surface-0 bg-gradient-to-r from-neon-cyan to-neon-emerald hover:shadow-lg hover:shadow-neon-cyan/25 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50"
+                whileHover={!sending ? { scale: 1.02 } : undefined}
+                whileTap={!sending ? { scale: 0.98 } : undefined}
+                disabled={sending || submitted}
+                className="mt-6 w-full py-3.5 rounded-xl font-semibold text-surface-0 bg-gradient-to-r from-neon-cyan to-neon-emerald hover:shadow-lg hover:shadow-neon-cyan/25 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <AnimatePresence mode="wait">
                   {submitted ? (
@@ -228,8 +253,21 @@ export default function ContactSection() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2"
                     >
+                      <Check className="w-4 h-4" />
                       Message Sent!
+                    </motion.span>
+                  ) : sending ? (
+                    <motion.span
+                      key="sending"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending...
                     </motion.span>
                   ) : (
                     <motion.span

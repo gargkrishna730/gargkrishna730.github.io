@@ -95,3 +95,51 @@ Current Project Status:
 Unresolved Issues or Risks:
 - None currently. All features stable.
 - Potential next phase: Add a "Download Resume" PDF button, add dark/light theme toggle, add blog/articles section, add testimonials section, add a 404 page.
+
+---
+Task ID: 4
+Agent: Main Agent
+Task: Add email sending functionality to contact form
+
+Work Log:
+- Created `/api/contact` API route with Resend email SDK integration
+- Added `ContactSubmission` Prisma model to store all form submissions in SQLite
+- Ran `bun run db:push` to sync schema, verified with Prisma queries
+- Updated `ContactSection.tsx`: replaced fake submit with real `fetch('/api/contact')` call
+- Added `sending` loading state with animated `Loader2` spinner on submit button
+- Added 3-state button animation: "Send Message" → "Sending..." (spinner) → "Message Sent!" (checkmark)
+- Disabled form inputs during submission (`disabled={sending}`)
+- Added proper error handling with `toast.error()` for network and server errors
+- Built professional dark-themed HTML email template with portfolio branding
+- Tested email delivery approaches:
+  - FormSubmit.co → Blocked by Cloudflare challenge (403)
+  - Direct SMTP → No local SMTP server available
+  - Resend API → Reachable (401), needs `RESEND_API_KEY` env var
+- All submissions stored in database regardless of email delivery status
+- Agent-browser QA: filled form, submitted, verified zero console errors, confirmed DB storage
+
+Email Infrastructure:
+- **Primary**: Resend SDK (free tier: 100 emails/day) — set `RESEND_API_KEY` in `.env`
+- **Fallback**: Nodemailer with SMTP — set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
+- **Always**: Database storage via Prisma — no configuration needed, works in all environments
+- To get a free Resend API key: Sign up at https://resend.com/signup → Dashboard → API Keys → Create
+
+Verification Results:
+- 3 test submissions stored in SQLite database successfully
+- API returns `{"success": true}` for all valid submissions
+- Frontend form clears after successful submission
+- Toast notification "Message sent!" displays on success
+- Zero lint errors, zero console errors
+- Agent-browser confirmed form submission works end-to-end
+
+Stage Summary:
+- Contact form now has real backend with database storage
+- Email delivery infrastructure ready (needs RESEND_API_KEY for actual delivery)
+- Beautiful HTML email template matching portfolio dark theme
+- All submissions preserved in database even without email config
+- Key files: src/app/api/contact/route.ts, src/components/portfolio/ContactSection.tsx, prisma/schema.prisma
+
+Unresolved Issues or Risks:
+- Email delivery requires `RESEND_API_KEY` environment variable to actually send to gargkrishna730@gmail.com
+- Sandbox environment blocks Cloudflare-protected services (FormSubmit) and has no local SMTP
+- Resend API is reachable and ready — just needs the free API key to activate
