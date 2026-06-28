@@ -19,7 +19,10 @@ export const metadata: Metadata = {
   keywords: ["DevOps", "Cloud Engineer", "Kubernetes", "Terraform", "AWS", "Azure", "CI/CD", "Docker", "Infrastructure as Code"],
   authors: [{ name: "Krishna Garg" }],
   icons: {
-    icon: "/logo.svg",
+    icon: [
+      { url: "/favicon.png", sizes: "1024x1024", type: "image/png" },
+      { url: "/logo.svg", sizes: "any", type: "image/svg+xml" },
+    ],
     apple: "/logo.svg",
   },
   openGraph: {
