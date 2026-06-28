@@ -206,8 +206,9 @@ export default function HeroSection() {
           </MagneticButton>
           <MagneticButton>
             <a
-              href="/images/hero-bg.png"
-              download
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-medium text-muted-foreground hover:text-neon-cyan glass-card hover:border-neon-cyan/30 transition-all duration-300"
             >
               <Download className="w-4 h-4" />
