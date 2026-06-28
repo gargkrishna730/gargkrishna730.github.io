@@ -372,3 +372,52 @@ Stage Summary:
 - PageLoader shows on first visit, skips instantly on revisit — no visual flash
 - No lint errors, no console errors, no hydration warnings
 - Key file changed: `src/app/page.tsx` (lines 3, 29-50)
+---
+Task ID: 10
+Agent: Main Agent
+Task: Deploy portfolio to GitHub Pages + Cloudflare Worker API
+
+Work Log:
+- Deleted the 15-minute recurring cron job (ID: 236789)
+- Configured Next.js for static export: `output: "export"`, `images: { unoptimized: true }`, `trailingSlash: true`, configurable `basePath`
+- Removed `/api/contact` route (replaced by Cloudflare Worker)
+- Updated `ContactSection.tsx` to use `NEXT_PUBLIC_CONTACT_API_URL` env var
+- Created Cloudflare Worker (`workers/contact-api/`):
+  - `wrangler.toml`, `package.json`, `tsconfig.json`, `src/index.ts`
+  - Handles POST /contact with validation, rate limiting (3/min/IP), CORS
+  - Sends email via Resend REST API (raw fetch, no npm package)
+  - Dark-themed HTML email template matching portfolio branding
+- Created GitHub Actions workflow (`.github/workflows/deploy.yml`):
+  - Job 1: Build static site → deploy to GitHub Pages
+  - Job 2: Deploy Worker to Cloudflare (with secrets)
+- Registered Cloudflare workers.dev subdomain: `gargkrishna730`
+- Deployed Worker manually: `https://kg-portfolio-contact-api.gargkrishna730.workers.dev`
+- Set RESEND_API_KEY secret on Worker via `wrangler secret put`
+- Pushed code to `gargkrishna730/gargkrishna730.github.io` (main branch)
+- Changed default branch from master to main
+- Encrypted & set 3 GitHub Secrets: RESEND_API_KEY, CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
+- Set 1 GitHub Variable: CONTACT_API_URL
+- Removed old CNAME (shubhamyadav.me) from Pages config
+- Switched Pages source from "master branch" to "GitHub Actions"
+
+Deployment URLs:
+- **Portfolio**: https://gargkrishna730.github.io/
+- **Contact API**: https://kg-portfolio-contact-api.gargkrishna730.workers.dev/contact
+- **GitHub Repo**: https://github.com/gargkrishna730/gargkrishna730.github.io
+
+Stage Summary:
+- Portfolio deployed to GitHub Pages (static, 1.9MB)
+- Contact API deployed to Cloudflare Workers (6.88 KiB)
+- CI/CD: push to main → auto-build + auto-deploy (both Pages and Worker)
+- All secrets stored in GitHub Secrets (encrypted at rest)
+- Cron job deleted — no more automated development rounds
+
+Current Project Status:
+- Portfolio LIVE at https://gargkrishna730.github.io/
+- Contact form sends emails via Resend through Cloudflare Worker
+- GitHub Actions CI/CD fully operational (both jobs green)
+- Static export build verified: zero errors
+- Local dev server still works for development
+
+Unresolved Issues or Risks:
+- None. Full deployment pipeline operational.
