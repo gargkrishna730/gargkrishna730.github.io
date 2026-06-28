@@ -7,7 +7,7 @@ const BASE_PATH = process.env.BASE_PATH || "";
 
 const nextConfig: NextConfig = {
   // Static export for GitHub Pages (enabled during build only)
-  // output: "export",
+  // // output: "export",
 
   // Required for static export: disables Next.js image optimization
   images: {

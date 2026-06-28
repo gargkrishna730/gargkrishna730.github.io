@@ -2,6 +2,7 @@
 
 import { ScrollReveal, SectionHeading, StaggerChildren, StaggerItem, CountUp } from './ScrollAnimations';
 import { Cloud, Container, GitBranch, Shield, Server, Cpu } from 'lucide-react';
+import CurrentlyBuildingWidget from './CurrentlyBuildingWidget';
 
 const highlights = [
   { icon: Cloud, label: 'Multi-Cloud', value: 5, suffix: '+', desc: 'AWS, Azure, GCP, Oracle, IBM' },
@@ -122,6 +123,8 @@ export default function AboutSection() {
                 </StaggerItem>
               ))}
             </StaggerChildren>
+
+            <CurrentlyBuildingWidget />
           </div>
         </div>
       </div>

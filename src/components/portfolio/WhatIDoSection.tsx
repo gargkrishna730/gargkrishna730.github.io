@@ -129,7 +129,7 @@ export default function WhatIDoSection() {
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-surface-3 text-muted-foreground border border-border/50"
+                        className="tag-hover px-2.5 py-1 rounded-md text-[11px] font-mono bg-surface-3 text-muted-foreground border border-border/50 cursor-default"
                       >
                         {tag}
                       </span>
