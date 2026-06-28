@@ -465,3 +465,40 @@ Work Log:
 Stage Summary:
 - 2 new components created
 - Total nav links: 9
+
+---
+Task ID: 12
+Agent: Main Agent (Cron Round)
+Task: Fix favicon Z→KG, add Activity section, Currently Building widget, styling enhancements
+
+Work Log:
+- User reported old Z logo still showing — root cause: SVG used `<text>` elements which don't render reliably at favicon sizes (16-32px)
+- Generated AI-powered PNG favicon (1024x1024) showing bold "KG" letters — verified via VLM
+- Created stroke-based SVG logo with thick line paths for K and G
+- Updated layout.tsx to prioritize PNG favicon over SVG for maximum browser compatibility
+- Created GitHubActivitySection.tsx: contribution heat map grid (12 weeks × 7 days), seeded pseudo-random data, color intensity levels, stats row
+- Created CurrentlyBuildingWidget.tsx: "Currently Building" status card with 4 items (K8s Operator, Istio, Rust, FinOps), animated progress bars, color-coded status badges
+- Added Activity to Navbar (9 total nav links)
+- Enhanced Experience section: added tech tags to each role card (shows 6 + "+N more")
+- Enhanced Projects and WhatIDo tags with tag-hover lift effect
+- Added 15+ new CSS classes: contrib-cell, status-pulse, progress-animated, glow-dot, tag-hover, icon-rotate-hover, card-inner-glow, code-cursor, counter-glow, timeline-connector, magnetic-pull, prefers-reduced-motion
+- Pushed 3 commits to GitHub: favicon fix, KG logo, activity section + styling
+
+Stage Summary:
+- 2 new components created (GitHubActivitySection, CurrentlyBuildingWidget)
+- Favicon: AI-generated PNG + stroke SVG, both showing KG
+- Total components: 21+ | Total nav links: 9 | Total sections: 11+
+- 15+ new CSS utility classes added
+
+Current Project Status:
+- Portfolio LIVE at https://gargkrishna730.github.io/
+- Favicon shows "KG" (PNG primary, SVG fallback)
+- GitHub Actions CI/CD deploys on push
+- All sections rendering: Hero, StatsTicker, About, Education, What I Do, Skills, Experience, Projects, Certifications, Activity, Contact, Footer
+- New: Currently Building widget in About section
+- New: GitHub Activity heat map section
+
+Unresolved Issues or Risks:
+- output: "export" causes dev server instability (needs to be commented out for local dev)
+- GitHub Activity data is pseudo-random (can't call GitHub API from static site)
+- Browser favicon caching may require hard-refresh for some users
