@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   description: "DevOps Engineer specializing in CI/CD pipelines, Kubernetes, Infrastructure as Code, and multi-cloud deployments. Building robust, automated, and scalable infrastructure solutions.",
   keywords: ["DevOps", "Cloud Engineer", "Kubernetes", "Terraform", "AWS", "Azure", "CI/CD", "Docker", "Infrastructure as Code"],
   authors: [{ name: "Krishna Garg" }],
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
   openGraph: {
     title: "Krishna Garg | DevOps & Cloud Engineer",
     description: "DevOps Engineer specializing in CI/CD pipelines, Kubernetes, Infrastructure as Code, and multi-cloud deployments.",
