@@ -421,3 +421,30 @@ Current Project Status:
 
 Unresolved Issues or Risks:
 - None. Full deployment pipeline operational.
+
+---
+Task ID: 11
+Agent: Main Agent
+Task: Replace Z favicon/logo with KG branding
+
+Work Log:
+- User reported "Z" appearing in browser tab favicon instead of "KG"
+- Found `/public/logo.svg` contained a stylized "Z" letter shape (white Z on dark rounded square with breathing animation)
+- Replaced with new SVG: dark gradient rounded square with cyan border, white "K" + cyan "G" text
+- Verified via agent-browser + VLM: direct SVG renders as "KG" confirmed
+- Pushed to GitHub (2 commits) — GitHub Actions will rebuild and deploy
+
+Stage Summary:
+- `public/logo.svg`: Replaced Z-shaped polygon with "KG" text (K in white, G in cyan #06b6d4)
+- Browser favicon will update on next deployment (GitHub Actions CI/CD)
+- Users may need to hard-refresh (Ctrl+Shift+R) to see new favicon due to browser caching
+- Key file: `public/logo.svg`
+
+Current Project Status:
+- Portfolio LIVE at https://gargkrishna730.github.io/
+- Favicon now shows "KG" instead of "Z"
+- All other components unchanged and working
+
+Unresolved Issues or Risks:
+- Browser favicon caching: users may need hard-refresh to see new icon
+- next.config.ts has `output: "export"` which causes dev server instability (commented out for local dev, active for build)
