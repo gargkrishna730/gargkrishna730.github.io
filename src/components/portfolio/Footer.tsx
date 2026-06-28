@@ -5,8 +5,8 @@ import { Terminal, Github, Linkedin, Mail, Heart, ArrowUp, ExternalLink, MapPin,
 import { useState, useEffect } from 'react';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/', label: 'LinkedIn' },
+  { icon: Github, href: 'https://github.com/gargkrishna730', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/garg-krishna/', label: 'LinkedIn' },
   { icon: Mail, href: 'mailto:gargkrishna730@gmail.com', label: 'Email' },
 ];
 

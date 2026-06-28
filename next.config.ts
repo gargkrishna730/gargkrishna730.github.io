@@ -6,8 +6,8 @@ import type { NextConfig } from "next";
 const BASE_PATH = process.env.BASE_PATH || "";
 
 const nextConfig: NextConfig = {
-  // Static export for GitHub Pages
-  output: "export",
+  // Static export for GitHub Pages (comment out for local dev)
+  // output: "export",
 
   // Required for static export: disables Next.js image optimization
   images: {
