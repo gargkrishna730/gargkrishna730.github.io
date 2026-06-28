@@ -62,4 +62,5 @@ server.log
 
 # Worker build artifacts
 workers/*/node_modules
-workers/*/.wrangler
+workers/*/.wrangler.wrangler/
+workers/*/package-lock.json
