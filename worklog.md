@@ -502,3 +502,38 @@ Unresolved Issues or Risks:
 - output: "export" causes dev server instability (needs to be commented out for local dev)
 - GitHub Activity data is pseudo-random (can't call GitHub API from static site)
 - Browser favicon caching may require hard-refresh for some users
+
+---
+Task ID: 11
+Agent: Main Agent
+Task: Fix LinkedIn/GitHub profile URLs + Favicon + Deploy
+
+Work Log:
+- User reported LinkedIn links pointing to generic linkedin.com instead of actual profile
+- Found 4 broken links across 2 files:
+  - Footer.tsx: GitHub → github.com/, LinkedIn → linkedin.com/
+  - HeroSection.tsx: GitHub → github.com/, LinkedIn → linkedin.com/
+- Fixed all 4 links:
+  - GitHub: https://github.com/gargkrishna730
+  - LinkedIn: https://www.linkedin.com/in/garg-krishna/
+- Favicon issue: public/favicon.png was a JPEG showing "Z" (from original template), despite previous SVG fix
+  - Generated new AI favicon with "KG" text using z-ai image generation
+  - Converted from JPEG to proper PNG (RGBA 1024x1024) using Pillow
+  - logo.svg already had "KG" from previous session
+- Restored output: "export" in next.config.ts for GitHub Pages build
+- Committed and pushed: `92e5f66 fix: restore output:export for GitHub Pages deployment`
+- Note: Link fixes and favicon were already committed in prior sessions, only next.config.ts was pending
+
+Stage Summary:
+- All social links now point to Krishna's actual profiles
+- Favicon is a proper PNG with "KG" branding
+- Code pushed to GitHub, GitHub Actions deploying to https://gargkrishna730.github.io/
+
+Current Project Status:
+- Portfolio site fully functional with correct social links and favicon
+- GitHub Actions will auto-deploy on push
+- Pending: GitHub optimization (repo settings, profile, etc.) — user requested proposals first before any changes
+
+Unresolved Issues or Risks:
+- Browser favicon caching: Users may need to hard-refresh (Ctrl+Shift+R) or clear cache to see new favicon
+- Pre-existing lint warnings in shadcn/ui carousel.tsx and use-mobile.ts (not from our changes)
