@@ -12,6 +12,7 @@ import SkillsSection from '@/components/portfolio/SkillsSection';
 import ExperienceSection from '@/components/portfolio/ExperienceSection';
 import ProjectsSection from '@/components/portfolio/ProjectsSection';
 import CertificationsSection from '@/components/portfolio/CertificationsSection';
+import GitHubActivitySection from '@/components/portfolio/GitHubActivitySection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import Footer from '@/components/portfolio/Footer';
 import ScrollProgress from '@/components/portfolio/ScrollProgress';
@@ -85,7 +86,9 @@ export default function Home() {
       <ProjectsSection />
       <CircuitDivider color="emerald" />
       <CertificationsSection />
-      <CircuitDivider color="cyan" />
+      <CircuitDivider color="purple" />
+      <GitHubActivitySection />
+      <CircuitDivider color="emerald" />
       <ContactSection />
       <Footer />
     </main>

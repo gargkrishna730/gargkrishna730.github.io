@@ -12,6 +12,7 @@ const experiences = [
     location: 'Chennai, India',
     period: 'April 2025 - Present',
     current: true,
+    tech: ['AWS', 'Azure', 'GCP', 'Oracle Cloud', 'Kubernetes', 'ArgoCD', 'Terraform', 'Prometheus', 'Grafana', 'OpenTelemetry', 'eBPF', 'Datadog'],
     highlights: [
       'Owned full-cycle DevOps operations for a SaaS-based observability and telemetry platform, covering CI/CD, infrastructure automation, and monitoring across environments.',
       'Architected multi-cloud deployments across AWS, Azure, GCP, and Oracle Cloud, ensuring 99.9% uptime and cost-efficient scaling.',
@@ -29,6 +30,7 @@ const experiences = [
     location: 'Mumbai, India',
     period: 'Nov 2023 - March 2025',
     current: false,
+    tech: ['AWS', 'Azure', 'Oracle Cloud', 'Azure DevOps', 'Kubernetes', 'Helm', 'Terraform', 'ELK Stack', 'SonarQube', 'OpenAM', 'GitLab'],
     highlights: [
       'Led DevOps initiatives to design and manage secure, scalable multi-cloud infrastructure across AWS, Azure, and Oracle Cloud.',
       'Implemented CI/CD pipelines using Azure DevOps, GitHub Actions, and GitLab, automating build, testing, and deployment workflows.',
@@ -97,7 +99,7 @@ export default function ExperienceSection() {
                   <div className={`w-full lg:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'lg:pr-8 pl-14 lg:pl-0' : 'lg:pl-8 pl-14'}`}>
                     <motion.div
                       whileHover={{ y: -4 }}
-                      className="glass-card rounded-2xl p-6 sm:p-8 h-full group hover:border-neon-cyan/25 transition-all duration-300"
+                      className="glass-card card-inner-glow rounded-2xl p-6 sm:p-8 h-full group hover:border-neon-cyan/25 transition-all duration-300"
                     >
                       {/* Header */}
                       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
@@ -129,6 +131,23 @@ export default function ExperienceSection() {
                           <MapPin className="w-3.5 h-3.5" />
                           <span>{exp.location}</span>
                         </div>
+                      </div>
+
+                      {/* Tech tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {exp.tech.slice(0, 6).map((t) => (
+                          <span
+                            key={t}
+                            className="tag-hover px-2 py-0.5 rounded-md text-[10px] font-mono bg-surface-3 text-muted-foreground border border-border/30"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                        {exp.tech.length > 6 && (
+                          <span className="px-2 py-0.5 rounded-md text-[10px] font-mono text-neon-cyan/50">
+                            +{exp.tech.length - 6} more
+                          </span>
+                        )}
                       </div>
 
                       {/* Highlights */}

@@ -448,3 +448,20 @@ Current Project Status:
 Unresolved Issues or Risks:
 - Browser favicon caching: users may need hard-refresh to see new icon
 - next.config.ts has `output: "export"` which causes dev server instability (commented out for local dev, active for build)
+
+---
+Task ID: 12
+Agent: Styling & Features Agent
+Task: Add GitHub Activity section and Currently Building widget
+
+Work Log:
+- Created GitHubActivitySection.tsx with contribution heat map grid (12 weeks × 7 days, seeded pseudo-random data)
+- Created CurrentlyBuildingWidget.tsx with 4 learning status items and animated progress bars
+- Integrated GitHubActivitySection into page.tsx between Certifications and Contact with CircuitDividers (purple before, emerald after)
+- Integrated CurrentlyBuildingWidget into AboutSection.tsx after the stats grid
+- Added Activity to Navbar links (between Certifications and Contact)
+- Verified lint passes (0 new errors — pre-existing errors in use-mobile.ts and worker are unrelated)
+
+Stage Summary:
+- 2 new components created
+- Total nav links: 9

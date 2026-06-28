@@ -705,6 +705,129 @@ h2:hover, h3:hover {
   user-select: none;
 }
 
+/* Contribution cell hover */
+.contrib-cell {
+  transition: all 0.15s ease;
+  border-radius: 2px;
+}
+.contrib-cell:hover {
+  transform: scale(1.8);
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+}
+
+/* Status badge pulse */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.status-pulse {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* Progress bar animated fill */
+@keyframes progress-fill {
+  from { width: 0; }
+}
+.progress-animated {
+  animation: progress-fill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Section reveal from bottom */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glow dot indicator */
+.glow-dot {
+  box-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+/* Tag hover lift */
+.tag-hover {
+  transition: all 0.2s ease;
+}
+.tag-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth icon rotate on hover */
+.icon-rotate-hover {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.icon-rotate-hover:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Magnetic pull effect for buttons */
+@keyframes magnetic-pull {
+  0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.3); }
+  70% { box-shadow: 0 0 0 12px rgba(6, 182, 212, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+}
+
+/* Experience timeline enhanced */
+.timeline-connector {
+  position: relative;
+}
+.timeline-connector::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.3), transparent);
+  transform: translateX(-50%);
+}
+
+/* Enhanced card inner glow on hover */
+.card-inner-glow {
+  position: relative;
+  overflow: hidden;
+}
+.card-inner-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background: radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(6, 182, 212, 0.06), transparent 60%);
+  pointer-events: none;
+}
+.card-inner-glow:hover::after {
+  opacity: 1;
+}
+
+/* Typing cursor for code blocks */
+.code-cursor::after {
+  content: '▌';
+  animation: terminal-blink 1s step-end infinite;
+  color: #06b6d4;
+  margin-left: 2px;
+}
+
+/* Smooth number counter glow */
+.counter-glow {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  transition: text-shadow 0.3s;
+}
+.counter-glow:hover {
+  text-shadow: 0 0 30px rgba(6, 182, 212, 0.5), 0 0 60px rgba(6, 182, 212, 0.2);
+}
+
+/* Responsive reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Testimonial card accent line */
 .testimonial-accent {
   position: relative;
