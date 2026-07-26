@@ -64,3 +64,6 @@ server.log
 workers/*/node_modules
 workers/*/.wrangler.wrangler/
 workers/*/package-lock.json
+
+# Tool scratch files
+tool-results/

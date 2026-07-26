@@ -179,7 +179,7 @@ Features Removed:
 - Nav links back to 7 (from temporary 8), breakpoint reverted to `md` (from `lg`).
 
 Email Activation:
-- Added `RESEND_API_KEY=REDACTED_RESEND_KEY...` to `.env` file
+- Added `RESEND_API_KEY` to `.env` file (key redacted — stored in GitHub Secrets + Cloudflare Worker secret, never committed)
 - Server auto-reloaded env variables
 - Tested real email delivery: 2 emails sent successfully to gargkrishna730@gmail.com
 - Database confirms `sent: true` for both submissions
