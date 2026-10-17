@@ -111,8 +111,10 @@ export default function ProjectsSection() {
                       </div>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1 line-clamp-4">
+                    {/* Full description. No line clamp: the cards sit in a grid row and
+                        stretch to the tallest, so truncating mid-sentence hid content with
+                        no way to reveal it. */}
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
                       {project.description}
                     </p>
 
