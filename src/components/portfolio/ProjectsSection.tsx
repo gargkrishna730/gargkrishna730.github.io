@@ -33,6 +33,10 @@ const projects = [
     gradient: 'from-neon-purple/20 to-pink-500/20',
     iconColor: 'text-neon-purple',
     accent: '#8b5cf6',
+    // Repo is currently private, so the link is withheld rather than shown as a 404.
+    // Flip `private` to false once the repository is made public.
+    href: 'https://github.com/gargkrishna730/SonarQube_Installation',
+    private: true,
   },
   {
     title: 'Azure ACR Image Cleanup',
@@ -42,6 +46,9 @@ const projects = [
     gradient: 'from-sky-500/20 to-neon-cyan/20',
     iconColor: 'text-sky-400',
     accent: '#38bdf8',
+    // Private repo: link held back until the repository is public.
+    href: 'https://github.com/gargkrishna730/azure-acr-cleanup-tools',
+    private: true,
   },
   {
     title: 'Multi-Cloud Observability Platform',
@@ -120,8 +127,8 @@ export default function ProjectsSection() {
                       ))}
                     </div>
 
-                    {/* Source link, only for projects that are public */}
-                    {project.href && (
+                    {/* Source link, only for repos that are publicly reachable */}
+                    {project.href && !('private' in project && project.private) && (
                       <a
                         href={project.href}
                         target="_blank"
