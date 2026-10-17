@@ -14,6 +14,7 @@ const projects = [
     iconColor: 'text-neon-cyan',
     accent: '#06b6d4',
     href: 'https://github.com/gargkrishna730/zonetax',
+    article: 'https://dev.to/gargkrishna730/your-kubernetes-cluster-is-paying-a-cross-az-tax-zonetax-shows-you-exactly-which-pod-35ie',
   },
   {
     title: 'WordPress CI/CD on AWS',
@@ -127,18 +128,35 @@ export default function ProjectsSection() {
                       ))}
                     </div>
 
-                    {/* Source link, only for repos that are publicly reachable */}
-                    {project.href && !('private' in project && project.private) && (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-neon-cyan hover:underline focus-visible:underline focus-visible:outline-none"
-                        aria-label={`View ${project.title} source on GitHub (opens in a new tab)`}
-                      >
-                        View on GitHub
-                        <span aria-hidden="true">→</span>
-                      </a>
+                    {/* Source and article links, shown only where publicly reachable */}
+                    {((project.href && !('private' in project && project.private)) ||
+                      'article' in project) && (
+                      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                        {project.href && !('private' in project && project.private) && (
+                          <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-medium text-neon-cyan hover:underline focus-visible:underline focus-visible:outline-none"
+                            aria-label={`View ${project.title} source on GitHub (opens in a new tab)`}
+                          >
+                            View on GitHub
+                            <span aria-hidden="true">→</span>
+                          </a>
+                        )}
+                        {'article' in project && project.article && (
+                          <a
+                            href={project.article}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-medium text-neon-purple hover:underline focus-visible:underline focus-visible:outline-none"
+                            aria-label={`Read the article about ${project.title} (opens in a new tab)`}
+                          >
+                            Read the article
+                            <span aria-hidden="true">→</span>
+                          </a>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
