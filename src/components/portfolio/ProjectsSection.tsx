@@ -6,6 +6,16 @@ import TiltCard from './TiltCard';
 
 const projects = [
   {
+    title: 'ZoneTax — Kubernetes Cross-AZ Cost Visibility',
+    description: 'Open-source Kubernetes tool that detects cross-availability-zone network traffic in real time and prices it per workload. A Go DaemonSet samples conntrack and resolves each flow to pod, node and zone. Found 97% of a cluster\'s cross-AZ spend on one route, cutting it from $2.32 to $0.03 a day.',
+    tech: ['Go', 'Kubernetes', 'AWS', 'React', 'Helm', 'Prometheus'],
+    icon: '💸',
+    gradient: 'from-neon-cyan/20 to-neon-purple/20',
+    iconColor: 'text-neon-cyan',
+    accent: '#06b6d4',
+    href: 'https://github.com/gargkrishna730/zonetax',
+  },
+  {
     title: 'WordPress CI/CD on AWS',
     description: 'Provisioned a complete LAMP stack using Terraform with automated build and deployment pipelines via GitHub Actions. Implemented WPScan security checks and optimized performance with ElastiCache and NGINX tuning for high-traffic WordPress hosting.',
     tech: ['Terraform', 'GitHub Actions', 'AWS', 'ElastiCache', 'NGINX', 'WPScan'],
@@ -13,6 +23,7 @@ const projects = [
     gradient: 'from-neon-cyan/20 to-neon-emerald/20',
     iconColor: 'text-neon-cyan',
     accent: '#06b6d4',
+    href: 'https://github.com/gargkrishna730/WordPress-Assignment',
   },
   {
     title: 'SonarQube One-Click Installer',
@@ -108,6 +119,20 @@ export default function ProjectsSection() {
                         </span>
                       ))}
                     </div>
+
+                    {/* Source link, only for projects that are public */}
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-neon-cyan hover:underline focus-visible:underline focus-visible:outline-none"
+                        aria-label={`View ${project.title} source on GitHub (opens in a new tab)`}
+                      >
+                        View on GitHub
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </TiltCard>
