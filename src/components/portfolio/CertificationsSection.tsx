@@ -39,7 +39,7 @@ const certifications = [
       { name: 'GitHub Actions', level: 'Specialist', color: 'text-gray-400', bg: 'bg-gray-400/10', border: 'border-gray-400/20' },
       { name: 'GitHub Advanced Security', level: 'Specialist', color: 'text-gray-400', bg: 'bg-gray-400/10', border: 'border-gray-400/20' },
       { name: 'GitHub Administration', level: 'Admin', color: 'text-gray-400', bg: 'bg-gray-400/10', border: 'border-gray-400/20' },
-      { name: 'GitHub Copilot', level: 'Specialist', color: 'text-gray-400', bg: 'bg-gray-400/10', border: 'border-gray-400/20', credentialId: 'A20C1C27B9567CEB', earned: 'September 2026', expires: 'September 2028' },
+      { name: 'GitHub Copilot', level: 'Specialist', color: 'text-gray-400', bg: 'bg-gray-400/10', border: 'border-gray-400/20' },
       { name: 'FinOps Certified Practitioner', level: 'Practitioner', color: 'text-violet-400', bg: 'bg-violet-400/10', border: 'border-violet-400/20' },
     ],
   },
@@ -106,26 +106,15 @@ export default function CertificationsSection() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06 }}
-                      className={`flex flex-col gap-1.5 p-3 rounded-xl ${cert.bg} border ${cert.border} group/item hover:scale-[1.02] transition-transform duration-200`}
+                      className={`flex items-center justify-between gap-3 p-3 rounded-xl ${cert.bg} border ${cert.border} group/item hover:scale-[1.02] transition-transform duration-200`}
                     >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className={`w-1.5 h-1.5 rounded-full ${cert.color} bg-current flex-shrink-0`} />
-                          <span className="text-sm text-foreground/90 truncate">{cert.name}</span>
-                        </div>
-                        <span className={`text-[10px] font-mono uppercase tracking-wider ${cert.color} flex-shrink-0 px-2 py-0.5 rounded-md bg-surface-0/50`}>
-                          {cert.level}
-                        </span>
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className={`w-1.5 h-1.5 rounded-full ${cert.color} bg-current flex-shrink-0`} />
+                        <span className="text-sm text-foreground/90 truncate">{cert.name}</span>
                       </div>
-
-                      {/* Verifiable credential details, where the credential is publicly checkable */}
-                      {'credentialId' in cert && cert.credentialId && (
-                        <div className="pl-[18px] flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-mono text-muted-foreground">
-                          <span>ID: {cert.credentialId}</span>
-                          {'earned' in cert && cert.earned && <span>Earned {cert.earned}</span>}
-                          {'expires' in cert && cert.expires && <span>Valid to {cert.expires}</span>}
-                        </div>
-                      )}
+                      <span className={`text-[10px] font-mono uppercase tracking-wider ${cert.color} flex-shrink-0 px-2 py-0.5 rounded-md bg-surface-0/50`}>
+                        {cert.level}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
